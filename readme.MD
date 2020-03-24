@@ -1,4 +1,7 @@
-will try out test-driven development
+will try out test-driven development (mocks for controller?)
+iwll try to follow symfony coding standards, using php-cs-fixer)
+
+bootstrap 
 
 # original assignment below
 
