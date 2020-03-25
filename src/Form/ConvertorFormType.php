@@ -14,10 +14,10 @@ class ConvertorFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('FileType', TextType::class)
+            ->add('FileType', TextType::class, ['label' => 'FileType'])
             // ->add('File')
-            ->add('Submit', SubmitType::class)
-        ;
+            ->add('SubmitXLXS', SubmitType::class, ['label' => 'Submit XLXS'])
+            ->add('SubmitCSV', SubmitType::class, ['label' => 'Submit CSV']);
     }
 
     public function configureOptions(OptionsResolver $resolver)

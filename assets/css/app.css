@@ -1,5 +1,10 @@
 @import "~bootstrap/";
 
-body {
-    background-color: lightgray;
+/*body {*/
+/*    background-color: lightgray;*/
+/*}*/
+
+* {
+    /*border: 1px solid black;*/
+    /*box-sizing: border-box;*/
 }

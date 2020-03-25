@@ -28,12 +28,14 @@ class ConvertorController extends AbstractController
     {
 
         $fileToBeConverted = new FileToBeConverted();
-        $fileToBeConverted->setFileType('testfiletype');
+        $fileToBeConverted->setFileType('XLXS-test-filetype');
         // $fileToBeConverted->setFile('need to pass in object');
         $form = $this->createForm(ConvertorFormType::class, $fileToBeConverted);
 
         dump($request->request->get('convertor_form'));
         $form->handleRequest($request);
+        // select which button has been clicked (https://symfony.com/doc/current/form/multiple_buttons.html)
+        dump($form->get("SubmitXLXS"));
         if ($form->isSubmitted() && $form->isValid()) {
             $fileToBeConverted = $form->getData();
             dump($fileToBeConverted);
