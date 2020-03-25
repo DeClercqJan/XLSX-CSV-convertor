@@ -96,6 +96,9 @@
     "egulias/email-validator": {
         "version": "2.1.17"
     },
+    "faisalman/simple-excel-php": {
+        "version": "v0.3.15"
+    },
     "friendsofphp/php-cs-fixer": {
         "version": "2.2",
         "recipe": {

@@ -29,9 +29,10 @@
         <div class="col-8 p-5">
             <h2 class="text-center">Prepare to be assimilated</h2>
             {{ form_start(form) }}
-            {{ form_row(form.FileType) }}
+            {{ form_row(form.File) }}
+{#            {{ form_row(form.FileType) }}#}
             <div class="d-flex justify-content-around">
-                {{ form_row(form.SubmitXLXS, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}
+{#                {{ form_row(form.SubmitXLXS, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}#}
                 {{ form_row(form.SubmitCSV, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}
             </div>
             {{ form_end(form) }}
