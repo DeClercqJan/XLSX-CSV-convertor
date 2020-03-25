@@ -1,7 +1,39 @@
-will try out test-driven development (mocks for controller?)
-iwll try to follow symfony coding standards, using php-cs-fixer)
+- will try out test-driven development (mocks for controller?)
+edit: not really doing it this way as I'm still quite uncomfortable with many things: forms, file uploads, services ...
 
-bootstrap 
+- wil try to follow symfony coding standards, using php-cs-fixer)
+
+- on mar 25, 2002 using https://faisalman.github.io/simple-excel-php/api/0.3/ to convert xml and csv. Yet xml isn't xlxs ... Maybe a good thing to try to change later on to see if code can be adapted easily
+
+- bootstrap 
+
+## paar persoonlijke notities 
+-> elders te zetten:
+set autosave in gedit preferences want mogelijk weer wat kwijt
+
+moet precies POST gebruiken om files op te laden
+
+$_FILES bevat dan bestand
+
+meerdere buttons inzelfde form: (https://symfony.com/doc/current/form/multiple_buttons.html)
+$form->get("SubmitCSV")
+
+moest move_uploaded_file gebruike https://www.php.net/manual/en/function.move-uploaded-file.php
+
+upload path was neit relatief aan root van site, maar path van mijn computer
+(php.ininiet meoten veranderne; géén path voor temporary files moeten zetten)
+
+// basename() may prevent filesystem traversal attacks;
+
+gemakkelijke manier om extensie te scheiden van naam $nameOnly = pathinfo($name, PATHINFO_FILENAME);
+
+over composer
+https://getcomposer.org/doc/01-basic-usage.md
+moest iets toevoegen aan composer.json (in concreto https://faisalman.github.io/simple-excel-php/api/0.3/ convertor xml-cvs
+dan om het te installeren: php composer.phar install
+
+dan moest ik het met use importeren daar waar ik het wou gebruiken
+
 
 # original assignment below
 
