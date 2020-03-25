@@ -29,7 +29,7 @@ class ConvertorController extends AbstractController
 
         $fileToBeConverted = new FileToBeConverted();
         $fileToBeConverted->setFileType('testfiletype');
-
+        // $fileToBeConverted->setFile('need to pass in object');
         $form = $this->createForm(ConvertorFormType::class, $fileToBeConverted);
 
         dump($request->request->get('convertor_form'));
