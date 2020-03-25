@@ -6,9 +6,9 @@ use App\Entity\FileToBeConverted;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class ConvertorFormType extends AbstractType
 {
@@ -16,9 +16,9 @@ class ConvertorFormType extends AbstractType
     {
         $builder
             ->setMethod('POST')
-            // ->add('FileType', TextType::class, ['label' => 'FileType'])
             ->add('File', FileType::class, ['label' => 'Select file'])
             // ->add('SubmitXLXS', SubmitType::class, ['label' => 'Submit XLXS'])
+            ->add('SubmitXML', SubmitType::class, ['label' => 'Submit XML'])
             ->add('SubmitCSV', SubmitType::class, ['label' => 'Submit CSV']);
     }
 

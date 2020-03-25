@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FileToBeConvertedRepository")
@@ -16,31 +17,17 @@ class FileToBeConverted
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $FileType;
 
     /**
      * @ORM\Column(type="object")
      */
     private $File;
 
+    private $fileNameFull;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getFileType(): ?string
-    {
-        return $this->FileType;
-    }
-
-    public function setFileType(string $FileType): self
-    {
-        $this->FileType = $FileType;
-
-        return $this;
     }
 
     public function getFile()
@@ -48,10 +35,33 @@ class FileToBeConverted
         return $this->File;
     }
 
+    // shouldn't this be in a constructor?
     public function setFile($File): self
     {
+
         $this->File = $File;
+
+        $this->setOriginalName();
 
         return $this;
     }
+
+    private function setOriginalName()
+    {
+
+        $test = "test";
+        // as this class basically takes another class as one of it's properties, I added it's namespace in order to to use it's methods
+        $test = $this->File->getClientOriginalName();
+        $this->fileNameFull = $test;
+
+    }
+
+    public function getFullFilePathFromDataBase($uploadedFilesDirectory, $fileNameFull)
+    {
+
+        // return $uploadedFilesDirectory . $fileNameFull;
+        return $uploadedFilesDirectory . $this->fileNameFull;
+
+    }
+
 }

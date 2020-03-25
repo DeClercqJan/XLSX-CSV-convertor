@@ -23,19 +23,24 @@
 
 <div class="container mw-100">
     <div class="row">
-        <h1 class="w-100 text-center text-light p-5 bg-success">XLXS-CSV-Convertor</h1>
+        <h1 class="w-100 text-center text-light p-5 bg-success">XML-CSV-Convertor</h1>
     </div>
-    <div class="row p-1">
+    <div class="row p-5">
         <div class="col-8 p-5">
             <h2 class="text-center">Prepare to be assimilated</h2>
-            {{ form_start(form) }}
-            {{ form_row(form.File) }}
-{#            {{ form_row(form.FileType) }}#}
-            <div class="d-flex justify-content-around">
-{#                {{ form_row(form.SubmitXLXS, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}#}
-                {{ form_row(form.SubmitCSV, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}
+            <div class="p-5">
+                {{ form_start(form) }}
+                <div class="d-flex justify-content-center ">
+                    {{ form_row(form.File, { 'attr': {'class': 'form-control-file', 'type' : 'file'}}) }}
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-around">
+                        {{ form_row(form.SubmitXML, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}
+                        {{ form_row(form.SubmitCSV, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
             </div>
-            {{ form_end(form) }}
         </div>
         <div class="col-4 p-5 bg-secondary rounded">
             <h2>Hello {{ controller_name }}! ✅</h2>
