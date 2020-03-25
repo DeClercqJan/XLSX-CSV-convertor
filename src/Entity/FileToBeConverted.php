@@ -49,17 +49,14 @@ class FileToBeConverted
     private function setOriginalName()
     {
 
-        $test = "test";
         // as this class basically takes another class as one of it's properties, I added it's namespace in order to to use it's methods
-        $test = $this->File->getClientOriginalName();
-        $this->fileNameFull = $test;
+        $this->fileNameFull = $this->File->getClientOriginalName();;
 
     }
 
     public function getFullFilePathFromDataBase($uploadedFilesDirectory, $fileNameFull)
     {
 
-        // return $uploadedFilesDirectory . $fileNameFull;
         return $uploadedFilesDirectory . $this->fileNameFull;
 
     }

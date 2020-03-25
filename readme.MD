@@ -1,16 +1,23 @@
-- will try out test-driven development (mocks for controller?)
-edit: not really doing it this way as I'm still quite uncomfortable with many things: forms, file uploads, services ...
+# CSV to/from XML convertor (yes XML, not XLXS at the moment)
 
-- wil try to follow symfony coding standards, using php-cs-fixer)
+## basic idea
 
+## implementation
+- heb alles maar veranderd naar XML in plaats van XLXS om tussentijdse verwarring te voorkomen(of vergroten). Waarom? verkeere API gekozen en ondertussen al zo ver (pad afhankelijkheid) dat ik in de eerste plaats wil verder doen om wat te leren. Misschien ook nog leuke uitdaging om het later te proberen aanpassen
 - on mar 25, 2002 using https://faisalman.github.io/simple-excel-php/api/0.3/ to convert xml and csv. Yet xml isn't xlxs ... Maybe a good thing to try to change later on to see if code can be adapted easily
-
+- will try out test-driven development (mocks for controller?) edit: not really doing it this way as I'm still quite uncomfortable with many things: forms, file uploads, services ...
+- wil try to follow symfony coding standards, using php-cs-fixer)
 - bootstrap 
 
+## to do's 
+- spoor van XML naar CSV (of beter, er een functie ofzo van maken die extendable is enzo)
+- er staan nog steeds paar bestanden in die misschien weg mogen: convertorControllertest, Str.php ... opkuisen dus
+
 ## paar persoonlijke notities 
+----
 -> elders te zetten:
 set autosave in gedit preferences want mogelijk weer wat kwijt
-
+----
 moet precies POST gebruiken om files op te laden
 
 $_FILES bevat dan bestand
@@ -27,13 +34,17 @@ upload path was neit relatief aan root van site, maar path van mijn computer
 
 gemakkelijke manier om extensie te scheiden van naam $nameOnly = pathinfo($name, PATHINFO_FILENAME);
 
+te bekijken: composer doet ook iets van file uploads
+
 over composer
 https://getcomposer.org/doc/01-basic-usage.md
 moest iets toevoegen aan composer.json (in concreto https://faisalman.github.io/simple-excel-php/api/0.3/ convertor xml-cvs
 dan om het te installeren: php composer.phar install
-
 dan moest ik het met use importeren daar waar ik het wou gebruiken
 
+heb dan eens alles proberen te groeperen wat samenhoorde, te verwijderen wat ik niet meteen (en misschien ook nooit zou gebruiken))
+
+wat niet op de meest elegante manier lukte, was mijn klasse die form enzo servet te doen matchen met uploadedFile component
 
 # original assignment below
 
