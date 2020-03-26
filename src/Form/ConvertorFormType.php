@@ -17,8 +17,8 @@ class ConvertorFormType extends AbstractType
         $builder
             ->setMethod('POST')
             ->add('File', FileType::class, ['label' => 'Select file'])
-            ->add('SubmitXML', SubmitType::class, ['label' => 'Submit XML'])
-            ->add('SubmitCSV', SubmitType::class, ['label' => 'Submit CSV']);
+            ->add('xml', SubmitType::class, ['label' => 'Submit XML'])
+            ->add('csv', SubmitType::class, ['label' => 'Submit CSV']);
     }
 
     public function configureOptions(OptionsResolver $resolver)

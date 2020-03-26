@@ -33,6 +33,7 @@
         "faisalman/simple-excel-php": "0.3.*"
     },
     "require-dev": {
+        "phan/phan": "2.x",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.14",
         "symfony/profiler-pack": "*",

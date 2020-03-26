@@ -15,6 +15,9 @@
     <div class="row p-5">
         <div class="col-8 p-5">
             <h2 class="text-center">Prepare to be assimilated</h2>
+            {% for error in errors %}
+                <p class="class=alert alert-danger text-center" role="alert">{{ error }}</p>
+            {% endfor %}
             <div class="p-5">
                 {{ form_start(form) }}
                 <div class="d-flex justify-content-center ">
@@ -22,8 +25,8 @@
                 </div>
                 <div class="d-flex justify-content-center">
                     <div class="d-flex justify-content-around">
-                        {{ form_row(form.SubmitXML, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}
-                        {{ form_row(form.SubmitCSV, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}
+                        {{ form_row(form.xml, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}
+                        {{ form_row(form.csv, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}
                     </div>
                 </div>
                 {{ form_end(form) }}
