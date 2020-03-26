@@ -10,38 +10,42 @@
 
 <div class="container mw-100">
     <div class="row">
-        <h1 class="w-100 text-center text-light p-5 bg-success">XML(2003 only!)-CSV-Convertor</h1>
+        <h1 class="w-100 text-center text-light p-5 bg-success">XML-CSV-Convertor</h1>
     </div>
-    <div class="row p-5">
-        <div class="col-8 p-5">
-            <h2 class="text-center">Prepare to be assimilated</h2>
+    <div class="row p-md-5 pt-0 pr-5 pl-5">
+        <div class="col-12 col-md-8 p-md-5">
+            <h2 class="text-center p-5 p-md-0">Prepare to be assimilated</h2>
             {% for error in errors %}
                 <p class="class=alert alert-danger text-center" role="alert">{{ error }}</p>
             {% endfor %}
-            <div class="p-5">
+            <div class="w-100">
                 {{ form_start(form) }}
-                <div class="d-flex justify-content-center ">
-                    {{ form_row(form.File, { 'attr': {'class': 'form-control-file', 'type' : 'file'}}) }}
+                <div class="d-flex justify-content-center pt-md-5">
+                    {{ form_row(form.File, { 'attr': {'class': 'w-100 form-control-file p-5', 'type' : 'file'}}) }}
                 </div>
-                <div class="d-flex justify-content-center">
-                    <div class="d-flex justify-content-around">
-                        {{ form_row(form.xml, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}
-                        {{ form_row(form.csv, { 'attr': {'class': 'btn btn-success p-3 circle', 'type' : 'button'}}) }}
-                    </div>
+                <div class="row d-flex justify-content-center">
+                        {{ form_row(form.xml, { 'attr': {'class': 'w-100 btn btn-success p-5 circle', 'type' : 'button'}}) }}
+                        {{ form_row(form.csv, { 'attr': {'class': 'w-100 btn btn-success p-5 circle', 'type' : 'button'}}) }}
                 </div>
                 {{ form_end(form) }}
             </div>
         </div>
-        <div class="col-4 p-5 bg-secondary rounded">
+        <div class="col-md-4 p-5 bg-secondary rounded" id="instructions_sidebar_bigger_screens">
             <h2>Hello!</h2>
             <div>
                 Please not that
             </div>
             <ul>
-                <li>please check first whether the xml-file is Excel's 2003 variant. Otherwisely (yes!) structured xml-files will blow up in your face</li>
+                <li>please check first whether the xml-file is Excel's 2003 variant. Otherwisely (yes!) structured
+                    xml-files will blow up in your face
+                </li>
                 <li>csv to xml does seem to work ok</li>
-                <li>developers, if you add dump()'s to the controller, you will write this to the xml-file that gets rendered. No idea why. Enlighten me!</li>
-                <li>All actual useful functionality comes from <a href="https://faisalman.github.io/simple-excel-php/api/0.3/">faisalman</a> Check his parser file and you'll see calls for properties only present in Excel 2003 xml
+                <li>developers, if you add dump()'s to the controller, you will write this to the xml-file that gets
+                    rendered. No idea why. Enlighten me!
+                </li>
+                <li>All actual useful functionality comes from <a
+                            href="https://faisalman.github.io/simple-excel-php/api/0.3/">faisalman</a> Check his parser
+                    file and you'll see calls for properties only present in Excel 2003 xml
                 <li>This is just an exercise to learn some Symfony</li>
                 <li>U2 probably is the most overrated band</li>
             </ul>

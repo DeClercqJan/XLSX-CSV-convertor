@@ -4,3 +4,9 @@
     /*border: 1px solid black;*/
     /*box-sizing: border-box;*/
 }
+
+@media only screen and (max-width: 768px) {
+    #instructions_sidebar_bigger_screens {
+        display: none;
+    }
+}

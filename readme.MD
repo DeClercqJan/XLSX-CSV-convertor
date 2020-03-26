@@ -11,6 +11,7 @@
 - bootstrap 
 
 ## to do's 
+- styling (looks ok across browser, but did not check systemaically? HOW CAN I DO THIS AUTOMATICALLY?
 - er staan nog steeds paar bestanden in die misschien weg mogen: convertorControllertest, Str.php ... opkuisen dus
 - will try out test-driven development (mocks for controller?) edit: not really doing it this way as I'm still quite uncomfortable with many things: forms, file uploads, services ...
 - wil try to follow symfony coding standards, using php-cs-fixer)

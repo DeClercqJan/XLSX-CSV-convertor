@@ -46,6 +46,8 @@ class ConvertorController extends AbstractController
                 ]);
             }
 
+            // probably should add flash-message to both render errors/success message instead of rendering this errors array all the time (which doesn't even make sense as I'm returning it immediately after the first error encountered instead of savign them up)
+
             // select which button has been clicked (https://symfony.com/doc/current/form/multiple_buttons.html)
             $fileExtensionDestination = $form->getClickedButton()->getName();
             // checks if conversion is unnecessary
