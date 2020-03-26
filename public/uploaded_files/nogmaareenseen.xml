@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="http://schemas.eps-software.com/NWindTest"
+  xmlns:eps="http://schemas.eps-software.com/NWindTest">
+  <xs:element name="Address">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="60" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="City">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="15" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ContactName">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="30" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ContactTitle">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="30" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Country">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="15" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Fax">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="24" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="PostalCode">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="10" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Region">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="15" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>

@@ -5,19 +5,20 @@
 ## implementation
 - heb alles maar veranderd naar XML in plaats van XLXS om tussentijdse verwarring te voorkomen(of vergroten). Waarom? verkeere API gekozen en ondertussen al zo ver (pad afhankelijkheid) dat ik in de eerste plaats wil verder doen om wat te leren. Misschien ook nog leuke uitdaging om het later te proberen aanpassen
 - on mar 25, 2002 using https://faisalman.github.io/simple-excel-php/api/0.3/ to convert xml and csv. Yet xml isn't xlxs ... Maybe a good thing to try to change later on to see if code can be adapted easily
-- will try out test-driven development (mocks for controller?) edit: not really doing it this way as I'm still quite uncomfortable with many things: forms, file uploads, services ...
-- wil try to follow symfony coding standards, using php-cs-fixer)
+- had massive issues with xml-files: unrecognized index and still, I had to delete all dump()'s as these would be written to the csv-file that gets exported!? No idea why
+- changed to using the convertTo method
+- to understand why only 2003 xml-files are supproted: go to the xml-parser and you'll see things like Workbook. This text is not present in other xml-files. 
 - bootstrap 
 
 ## to do's 
-- spoor van XML naar CSV (of beter, er een functie ofzo van maken die extendable is enzo)
 - er staan nog steeds paar bestanden in die misschien weg mogen: convertorControllertest, Str.php ... opkuisen dus
+- will try out test-driven development (mocks for controller?) edit: not really doing it this way as I'm still quite uncomfortable with many things: forms, file uploads, services ...
+- wil try to follow symfony coding standards, using php-cs-fixer)
 
 ## paar persoonlijke notities 
 
 ELDERS TE ZETTEN
 set autosave in gedit preferences want mogelijk weer wat kwijt
-
 
 OUDE LOGICA
 moet precies POST gebruiken om files op te laden

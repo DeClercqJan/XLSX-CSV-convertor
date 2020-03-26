@@ -17,10 +17,6 @@ class ConvertorController extends AbstractController
      */
     public function convertor(Request $request)
     {
-        // echo phpinfo();
-
-        // dd(sys_get_temp_dir());
-
         $fileToBeConverted = new FileToBeConverted();
 
         $form = $this->createForm(ConvertorFormType::class, $fileToBeConverted);
@@ -35,8 +31,6 @@ class ConvertorController extends AbstractController
             // question: does this have to do with FileType in FormType voor mijn form-field
             // https://symfony.com/doc/current/controller/upload_file.html how I've read it: FileType: to render front-end, but you can already call on File in its buildform props
             $fileToBeConverted = $form->getData();
-            dump($fileToBeConverted);
-            dump($fileToBeConverted->checkUploadErrors());
 
             // check whether the file extension is accepted/supported
             $fileExtensionOnlyOriginal = $fileToBeConverted->getFileExtension();
@@ -71,22 +65,10 @@ class ConvertorController extends AbstractController
             // stap 1: prepare before transformation
             $preparedObject = new SimpleExcel($fileExtensionOnlyOriginal);                    // instantiate new object (will automatically construct the parser & writer type as XML)
             $preparedObject->parser->loadFile($fileToBeConvertedFullPath);
-            dump($preparedObject);
-            $preparedObjectReturnsAllTheData = $preparedObject->parser->getField();                  // get complete array of the table
-            dump($preparedObjectReturnsAllTheData);
+            $preparedObject->parser->getField();                  // get complete array of the table
             // stap 2: transform
-
-            // delimiter maybe
-
-//            $excel = new SimpleExcel('csv');
-//            $excel->writer->setDelimiter(";");
-//            $excel->writer->setData($preparedObjectReturnsAllTheData);
-//            $excel->writer->saveFile('example');
-
-            $transformedObject = new SimpleExcel($fileExtensionDestination);
-            $transformedObject->writer->setData($preparedObjectReturnsAllTheData);            // add some data to the writer
-            dump($transformedObject);
-            $transformedObject->writer->saveFile($fileNameOnly); // save the file with specified name (example.xml)
+            $preparedObject->convertTo(strtoupper($fileExtensionDestination));
+            $preparedObject->writer->saveFile($fileNameOnly); // save the file with specified name (example.xml)
 
         }
 
