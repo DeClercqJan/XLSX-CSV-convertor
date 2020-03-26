@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FileToBeConvertedRepository")
  */
+// as this class basically takes another class as one of it's properties, I added it's namespace in order to to use it's methods
 class FileToBeConverted
 {
     /**
@@ -25,6 +26,13 @@ class FileToBeConverted
 
     private $fileNameFull;
 
+    private $fileExtension;
+
+    private $fileNameWithoutExtension;
+
+    private const SAVED_FILES_DIRECTORY = "/var/www/XLSX-CSV-convertor/public/uploaded_files/";
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -41,24 +49,68 @@ class FileToBeConverted
 
         $this->File = $File;
 
-        $this->setOriginalName();
+        $this->setFileNameFull();
+        $this->setFileExtension();
+        $this->setFileNameWithoutExtension();
+        $this->saveFileToServer();
 
         return $this;
     }
 
-    private function setOriginalName()
+    private function setFileNameFull()
     {
 
-        // as this class basically takes another class as one of it's properties, I added it's namespace in order to to use it's methods
-        $this->fileNameFull = $this->File->getClientOriginalName();;
+        $this->fileNameFull = $this->File->getClientOriginalName();
 
     }
 
-    public function getFullFilePathFromDataBase($uploadedFilesDirectory, $fileNameFull)
+    public function getFileNameFull()
+    {
+        return $this->fileNameFull;
+    }
+
+    private function setFileExtension()
     {
 
-        return $uploadedFilesDirectory . $this->fileNameFull;
+        $this->fileExtension = $this->File->getClientOriginalExtension();
+    }
 
+    private function setFileNameWithoutExtension()
+    {
+        $lengthOfExtension = strlen($this->fileExtension);
+        // don't forget the dot!
+        $lengthOfExtension = $lengthOfExtension + 1;
+        $this->fileNameWithoutExtension = substr($this->fileNameFull,0, -$lengthOfExtension);
+    }
+
+    public function getFileNameWithoutExtension()
+    {
+        return $this->fileNameWithoutExtension;
+    }
+
+    public function getFileExtension(): string
+    {
+        return $this->fileExtension;
+    }
+
+    private
+    function saveFileToServer()
+    {
+        $this->File->move(self::SAVED_FILES_DIRECTORY, $this->fileNameFull);
+    }
+
+    public
+    function getFullFilePathFromServer(): string
+    {
+
+        return self::SAVED_FILES_DIRECTORY . $this->fileNameFull;
+
+    }
+
+    public
+    function checkUploadErrors()
+    {
+        return $this->File->getError();
     }
 
 }

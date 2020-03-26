@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use SimpleExcel\SimpleExcel;
 
-
 class ConvertorController extends AbstractController
 {
     /**
@@ -18,7 +17,11 @@ class ConvertorController extends AbstractController
      */
     public function convertor(Request $request)
     {
-        $fileToBeConverted = new FileToBeConverted("no file has been selected");
+        // echo phpinfo();
+
+        // dd(sys_get_temp_dir());
+
+        $fileToBeConverted = new FileToBeConverted();
 
         $form = $this->createForm(ConvertorFormType::class, $fileToBeConverted);
         $form->handleRequest($request);
@@ -28,28 +31,18 @@ class ConvertorController extends AbstractController
         $errors = [];
 
         if ($form->isSubmitted() && $form->isValid() && $requestMethod === "POST") {
-            // als constante ergens in steken, mss best gewoon afzonderlijke klasse ofzo
-            $uploadedFilesDirectory = "/var/www/XLSX-CSV-convertor/public/uploaded_files/";
+            // put a lot of of the work (like storing object on right place) in this object, using methods of Symfony\Component\HttpFoundation\File\UploadedFile;
+            // question: does this have to do with FileType in FormType voor mijn form-field
+            // https://symfony.com/doc/current/controller/upload_file.html how I've read it: FileType: to render front-end, but you can already call on File in its buildform props
+            $fileToBeConverted = $form->getData();
+            dump($fileToBeConverted);
+            dump($fileToBeConverted->checkUploadErrors());
 
-            // dit kan in een functie getFileNameWithouty() ofzoiets. edit: mss best in fileToBeConvertedSteken en hier zo weinig mogelijk werk doen, maar enkel opvragen wat ik nodig heb hier
-            // had trouble uploading. Used move method to set it where I wanted it
-            // foreach lijkt me veiliger
-            foreach ($_FILES["convertor_form"]["error"] as $key => $error) {
-                // checkt of file goed werd upgeload
-                if ($error == UPLOAD_ERR_OK) {
-                    $tmp_name = $_FILES["convertor_form"]["tmp_name"][$key];
-                    // basename() may prevent filesystem traversal attacks;
-                    // further validation/sanitation of the filename may be appropriate
-                    $fileNameFull = basename($_FILES["convertor_form"]["name"][$key]);
-                    move_uploaded_file($tmp_name, "$uploadedFilesDirectory/$fileNameFull");
-                }
-            }
-            $fileNameOnly = pathinfo($fileNameFull, PATHINFO_FILENAME);
-            $fileExtensionOnlyOriginal = pathinfo($fileNameFull, PATHINFO_EXTENSION);
-
+            // check whether the file extension is accepted/supported
+            $fileExtensionOnlyOriginal = $fileToBeConverted->getFileExtension();
             $acceptedFileExtensions[] = 'xml';
             $acceptedFileExtensions[] = 'csv';
-            // probably need to put these checks with return statements in reusable thingie
+            // may need to put these checks with return statements in reusable thingie
             if (!in_array($fileExtensionOnlyOriginal, $acceptedFileExtensions)) {
                 $errors[] = "file extension of original $fileExtensionOnlyOriginal is not an accepted file extension";
                 return $this->render('convertor/index.html.twig', [
@@ -61,7 +54,7 @@ class ConvertorController extends AbstractController
 
             // select which button has been clicked (https://symfony.com/doc/current/form/multiple_buttons.html)
             $fileExtensionDestination = $form->getClickedButton()->getName();
-
+            // checks if conversion is unnecessary
             if ($fileExtensionOnlyOriginal === $fileExtensionDestination) {
                 $errors[] = 'file extension of original is the same as required destination file extension';
                 return $this->render('convertor/index.html.twig', [
@@ -71,23 +64,30 @@ class ConvertorController extends AbstractController
                 ]);
             }
 
-            // question: does it make sense to make this clas as this object basically repeats (alternative vision is 'selects') properties of existing symfony component "UploadedFile"
-            // answer: becomes messy, because I need FileType in my form, which refers to FileToBeConvertedClass ...
-            // to ponder on: maybe 2 classes: one that serves form and raw input and another, that only takes a few arguments?
-            $fileToBeConverted = $form->getData();
-            dump($fileToBeConverted);
-            $fileToBeConvertedfullFilePath = $fileToBeConverted->getFullFilePathFromDataBase($uploadedFilesDirectory, $fileNameFull);
-
             // wanted to put this in separate object first, but now I think: what does it add but more complexity? Security maybe
-            // stap 1: naar array
+            $fileToBeConvertedFullPath = $fileToBeConverted->getFullFilePathFromServer();
+            $fileNameOnly = $fileToBeConverted->getFileNameWithoutExtension();
+
+            // stap 1: prepare before transformation
             $preparedObject = new SimpleExcel($fileExtensionOnlyOriginal);                    // instantiate new object (will automatically construct the parser & writer type as XML)
-            $preparedObject->parser->loadFile($fileToBeConvertedfullFilePath);  // load an XML file from server to be parsed
+            $preparedObject->parser->loadFile($fileToBeConvertedFullPath);
+            dump($preparedObject);
             $preparedObjectReturnsAllTheData = $preparedObject->parser->getField();                  // get complete array of the table
-            dump($preparedObjectReturnsAllTheData); // echo the array
-            // stap 2: naar XML (opgelet is geen XLXS?)
+            dump($preparedObjectReturnsAllTheData);
+            // stap 2: transform
+
+            // delimiter maybe
+
+//            $excel = new SimpleExcel('csv');
+//            $excel->writer->setDelimiter(";");
+//            $excel->writer->setData($preparedObjectReturnsAllTheData);
+//            $excel->writer->saveFile('example');
+
             $transformedObject = new SimpleExcel($fileExtensionDestination);
             $transformedObject->writer->setData($preparedObjectReturnsAllTheData);            // add some data to the writer
+            dump($transformedObject);
             $transformedObject->writer->saveFile($fileNameOnly); // save the file with specified name (example.xml)
+
         }
 
         return $this->render('convertor/index.html.twig', [

@@ -14,10 +14,12 @@
 - er staan nog steeds paar bestanden in die misschien weg mogen: convertorControllertest, Str.php ... opkuisen dus
 
 ## paar persoonlijke notities 
-----
--> elders te zetten:
+
+ELDERS TE ZETTEN
 set autosave in gedit preferences want mogelijk weer wat kwijt
-----
+
+
+OUDE LOGICA
 moet precies POST gebruiken om files op te laden
 
 $_FILES bevat dan bestand
@@ -34,8 +36,7 @@ upload path was neit relatief aan root van site, maar path van mijn computer
 
 gemakkelijke manier om extensie te scheiden van naam $nameOnly = pathinfo($name, PATHINFO_FILENAME);
 
-te bekijken: composer doet ook iets van file uploads
-
+ANDERE
 over composer
 https://getcomposer.org/doc/01-basic-usage.md
 moest iets toevoegen aan composer.json (in concreto https://faisalman.github.io/simple-excel-php/api/0.3/ convertor xml-cvs
@@ -44,7 +45,12 @@ dan moest ik het met use importeren daar waar ik het wou gebruiken
 
 heb dan eens alles proberen te groeperen wat samenhoorde, te verwijderen wat ik niet meteen (en misschien ook nooit zou gebruiken))
 
-wat niet op de meest elegante manier lukte, was mijn klasse die form enzo servet te doen matchen met uploadedFile component
+put a lot of of the work (like storing object on right place) in this object, using methods of Symfony\Component\HttpFoundation\File\UploadedFile;
+question: does this have to do with FileType in FormType voor mijn form-field
+https://symfony.com/doc/current/controller/upload_file.html how I've read it: FileType: to render front-end, but you can already call on File in its buildform props
+
+te bekijken: Doctrine doet ook iets van file uploads. nope: niet meer goed volgens https://symfony.com/doc/current/controller/upload_file.html
+
 
 # original assignment below
 

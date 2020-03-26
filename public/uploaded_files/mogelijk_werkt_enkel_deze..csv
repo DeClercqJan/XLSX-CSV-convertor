@@ -1,0 +1,165 @@
+"Employee No","Employee Name",Job
+7839,KING,PRESIDENT
+ConvertorController.php on line 38:
+App\Entity\FileToBeConverted {#542
+  -id: null
+  -File: Symfony\Component\HttpFoundation\File\UploadedFile {#18
+    -test: false
+    -originalName: "mogelijk_werkt_enkel_deze.xml"
+    -mimeType: "text/xml"
+    -error: 0
+    path: "/tmp"
+    filename: "phprsuNzW"
+    basename: "phprsuNzW"
+    pathname: "/tmp/phprsuNzW"
+    extension: ""
+    realPath: false
+    writable: false
+    readable: false
+    executable: false
+    file: false
+    dir: false
+    link: false
+  }
+  -fileNameFull: "mogelijk_werkt_enkel_deze.xml"
+  -fileExtension: "xml"
+  -fileNameWithoutExtension: "mogelijk_werkt_enkel_deze."
+}
+ConvertorController.php on line 39:
+0
+ConvertorController.php on line 74:
+SimpleExcel\SimpleExcel {#22
+  +parser: SimpleExcel\Parser\XMLParser {#1338
+    #file_extension: "xml"
+    #table_arr: array:2 [
+      "doc_props" => []
+      "table_contents" => array:2 [
+        0 => array:2 [
+          "row_num" => 1
+          "row_contents" => array:3 [
+            0 => array:4 [
+              "row_num" => 1
+              "col_num" => 1
+              "datatype" => "String"
+              "value" => "Employee No"
+            ]
+            1 => array:4 [
+              "row_num" => 1
+              "col_num" => 2
+              "datatype" => "String"
+              "value" => "Employee Name"
+            ]
+            2 => array:4 [
+              "row_num" => 1
+              "col_num" => 3
+              "datatype" => "String"
+              "value" => "Job"
+            ]
+          ]
+        ]
+        1 => array:2 [
+          "row_num" => 2
+          "row_contents" => array:3 [
+            0 => array:4 [
+              "row_num" => 2
+              "col_num" => 1
+              "datatype" => "Number"
+              "value" => "7839"
+            ]
+            1 => array:4 [
+              "row_num" => 2
+              "col_num" => 2
+              "datatype" => "String"
+              "value" => "KING"
+            ]
+            2 => array:4 [
+              "row_num" => 2
+              "col_num" => 3
+              "datatype" => "String"
+              "value" => "PRESIDENT"
+            ]
+          ]
+        ]
+      ]
+    ]
+  }
+  +writer: SimpleExcel\Writer\XMLWriter {#1339
+    #content_type: "application/xml"
+    #file_extension: "xml"
+    -doc_prop: array:6 [
+      "Author" => "SimpleExcel"
+      "Company" => "SimpleExcel"
+      "Created" => "2020-03-26T19:00:21Z"
+      "Keywords" => "SimpleExcel"
+      "LastAuthor" => "SimpleExcel"
+      "Version" => "12.00"
+    ]
+    #tabl_data: null
+  }
+  #validParserTypes: array:5 [
+    0 => "XML"
+    1 => "CSV"
+    2 => "TSV"
+    3 => "HTML"
+    4 => "JSON"
+  ]
+  #validWriterTypes: array:5 [
+    0 => "XML"
+    1 => "CSV"
+    2 => "TSV"
+    3 => "HTML"
+    4 => "JSON"
+  ]
+}
+ConvertorController.php on line 76:
+array:2 [
+  0 => array:3 [
+    0 => "Employee No"
+    1 => "Employee Name"
+    2 => "Job"
+  ]
+  1 => array:3 [
+    0 => "7839"
+    1 => "KING"
+    2 => "PRESIDENT"
+  ]
+]
+ConvertorController.php on line 80:
+SimpleExcel\SimpleExcel {#1330
+  +parser: SimpleExcel\Parser\CSVParser {#1329
+    #delimiter: null
+    #file_extension: "csv"
+    #table_arr: null
+  }
+  +writer: SimpleExcel\Writer\CSVWriter {#1333
+    #content_type: "text/csv"
+    #delimiter: ","
+    #file_extension: "csv"
+    #tabl_data: array:2 [
+      0 => array:3 [
+        0 => "Employee No"
+        1 => "Employee Name"
+        2 => "Job"
+      ]
+      1 => array:3 [
+        0 => "7839"
+        1 => "KING"
+        2 => "PRESIDENT"
+      ]
+    ]
+  }
+  #validParserTypes: array:5 [
+    0 => "XML"
+    1 => "CSV"
+    2 => "TSV"
+    3 => "HTML"
+    4 => "JSON"
+  ]
+  #validWriterTypes: array:5 [
+    0 => "XML"
+    1 => "CSV"
+    2 => "TSV"
+    3 => "HTML"
+    4 => "JSON"
+  ]
+}
