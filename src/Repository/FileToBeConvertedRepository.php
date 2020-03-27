@@ -22,7 +22,6 @@ class FileToBeConvertedRepository extends ServiceEntityRepository
     // /**
     //  * @return FileToBeConverted[] Returns an array of FileToBeConverted objects
     //  */
-    /*
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('f')
@@ -34,9 +33,7 @@ class FileToBeConvertedRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
 
-    /*
     public function findOneBySomeField($value): ?FileToBeConverted
     {
         return $this->createQueryBuilder('f')
@@ -46,5 +43,5 @@ class FileToBeConvertedRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+
 }

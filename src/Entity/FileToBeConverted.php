@@ -3,12 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FileToBeConvertedRepository")
  */
-// as this class basically takes another class as one of it's properties, I added it's namespace in order to to use it's methods
+// as this class basically takes another class (Symfony\Component\HttpFoundation\File\UploadedFile;) as one of it's properties, I added it's namespace in order to to use it's methods
 class FileToBeConverted
 {
     /**
@@ -17,7 +16,6 @@ class FileToBeConverted
      * @ORM\Column(type="integer")
      */
     private $id;
-
 
     /**
      * @ORM\Column(type="object")
@@ -30,12 +28,11 @@ class FileToBeConverted
 
     private $fileNameWithoutExtension;
 
-    private const SAVED_FILES_DIRECTORY = "/var/www/XLSX-CSV-convertor/public/uploaded_files/";
+    private const SAVED_FILES_DIRECTORY = '/var/www/XLSX-CSV-convertor/public/uploaded_files/';
 
     // shouldn't this be in a constructor?
     public function setFile($file): self
     {
-
         $this->file = $file;
 
         $this->setFileNameFull();
@@ -71,30 +68,23 @@ class FileToBeConverted
         return $this->fileNameFull;
     }
 
-    public
-    function getFullFilePathFromServer(): string
+    public function getFullFilePathFromServer(): string
     {
-
-        return self::SAVED_FILES_DIRECTORY . $this->fileNameFull;
-
+        return self::SAVED_FILES_DIRECTORY.$this->fileNameFull;
     }
 
-    public
-    function checkUploadErrors()
+    public function checkUploadErrors()
     {
         return $this->file->getError();
     }
 
     private function setFileNameFull()
     {
-
         $this->fileNameFull = $this->file->getClientOriginalName();
-
     }
 
     private function setFileExtension()
     {
-
         $this->fileExtension = $this->file->getClientOriginalExtension();
     }
 
@@ -106,10 +96,8 @@ class FileToBeConverted
         $this->fileNameWithoutExtension = substr($this->fileNameFull, 0, -$lengthOfExtension);
     }
 
-    private
-    function saveFileToServer()
+    private function saveFileToServer()
     {
         $this->file->move(self::SAVED_FILES_DIRECTORY, $this->fileNameFull);
     }
-
 }

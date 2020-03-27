@@ -1,57 +1,23 @@
 # CSV to/from XML convertor (yes XML, not XLXS at the moment)
 
 ## basic idea
+- upload to/from CSV-XML
 
 ## implementation
-- heb alles maar veranderd naar XML in plaats van XLXS om tussentijdse verwarring te voorkomen(of vergroten). Waarom? verkeere API gekozen en ondertussen al zo ver (pad afhankelijkheid) dat ik in de eerste plaats wil verder doen om wat te leren. Misschien ook nog leuke uitdaging om het later te proberen aanpassen
-- on mar 25, 2002 using https://faisalman.github.io/simple-excel-php/api/0.3/ to convert xml and csv. Yet xml isn't xlxs ... Maybe a good thing to try to change later on to see if code can be adapted easily
-- had massive issues with xml-files: unrecognized index and still, I had to delete all dump()'s as these would be written to the csv-file that gets exported!? No idea why
-- changed to using the convertTo method
+- didn't choose the right external app to transform to/from XLXS (whoop!) (https://faisalman.github.io/simple-excel-php/api/0.3/). Limits this app's use, but I'm doing this to improve my process anyway
 - to understand why only 2003 xml-files are supproted: go to the xml-parser and you'll see things like Workbook. This text is not present in other xml-files. 
-- bootstrap 
+- had massive issues with xml-files: unrecognized index and still, I had to delete all dump()'s as these would be written to the csv-file that gets exported!? No idea why
+- bootstrap, encore
+- tried to pay attention to code quality
+- symfony coding standards, using php-cs-fixer
 
 ## to do's 
-- styling (looks ok across browser, but did not check systemaically? HOW CAN I DO THIS AUTOMATICALLY?
-- er staan nog steeds paar bestanden in die misschien weg mogen: convertorControllertest, Str.php ... opkuisen dus
-- will try out test-driven development (mocks for controller?) edit: not really doing it this way as I'm still quite uncomfortable with many things: forms, file uploads, services ...
-- wil try to follow symfony coding standards, using php-cs-fixer)
+- unit tests
+- find other service that does supports XLXS (would be nice to see how modular my app is)
+- styling (looks ok across browser, but did not check systemaically? How can I do this automatically?
+- question: should I have extended UploadedFile to my FileToBeConverted instead of 'use'-ing it. Anyway, it was very helpful to look through existing classes and see what methods I could just use (starting to like this Symfony thing!)
 
 ## paar persoonlijke notities 
-
-ELDERS TE ZETTEN
-set autosave in gedit preferences want mogelijk weer wat kwijt
-
-OUDE LOGICA
-moet precies POST gebruiken om files op te laden
-
-$_FILES bevat dan bestand
-
-meerdere buttons inzelfde form: (https://symfony.com/doc/current/form/multiple_buttons.html)
-$form->get("SubmitCSV")
-
-moest move_uploaded_file gebruike https://www.php.net/manual/en/function.move-uploaded-file.php
-
-upload path was neit relatief aan root van site, maar path van mijn computer
-(php.ininiet meoten veranderne; géén path voor temporary files moeten zetten)
-
-// basename() may prevent filesystem traversal attacks;
-
-gemakkelijke manier om extensie te scheiden van naam $nameOnly = pathinfo($name, PATHINFO_FILENAME);
-
-ANDERE
-over composer
-https://getcomposer.org/doc/01-basic-usage.md
-moest iets toevoegen aan composer.json (in concreto https://faisalman.github.io/simple-excel-php/api/0.3/ convertor xml-cvs
-dan om het te installeren: php composer.phar install
-dan moest ik het met use importeren daar waar ik het wou gebruiken
-
-heb dan eens alles proberen te groeperen wat samenhoorde, te verwijderen wat ik niet meteen (en misschien ook nooit zou gebruiken))
-
-put a lot of of the work (like storing object on right place) in this object, using methods of Symfony\Component\HttpFoundation\File\UploadedFile;
-question: does this have to do with FileType in FormType voor mijn form-field
-https://symfony.com/doc/current/controller/upload_file.html how I've read it: FileType: to render front-end, but you can already call on File in its buildform props
-
-te bekijken: Doctrine doet ook iets van file uploads. nope: niet meer goed volgens https://symfony.com/doc/current/controller/upload_file.html
 
 
 # original assignment below

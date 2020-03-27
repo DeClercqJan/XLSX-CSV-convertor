@@ -1,0 +1,28 @@
+src/Controller/ConvertorController.php:10 PhanUnreferencedUseNormal Possibly zero references to use statement for classlike/namespace Route (\Symfony\Component\Routing\Annotation\Route)
+src/Controller/ConvertorController.php:17 PhanUndeclaredTypeParameter Parameter $request has undeclared type \Symfony\Component\HttpFoundation\Request
+src/Controller/ConvertorController.php:23 PhanUndeclaredClassMethod Call to method getMethod from undeclared class \Symfony\Component\HttpFoundation\Request
+src/Controller/ConvertorController.php:52 PhanUndeclaredMethod Call to undeclared method \Symfony\Component\Form\FormInterface::getClickedButton
+src/Controller/ConvertorController.php:70 PhanUndeclaredClassMethod Call to method loadFile from undeclared class \SimpleExcel\CSVParser (Did you mean class \SimpleExcel\Parser\CSVParser)
+src/Controller/ConvertorController.php:71 PhanUndeclaredClassMethod Call to method getField from undeclared class \SimpleExcel\CSVParser (Did you mean class \SimpleExcel\Parser\CSVParser)
+src/Controller/ConvertorController.php:74 PhanUndeclaredClassMethod Call to method saveFile from undeclared class \SimpleExcel\CSVWriter (Did you mean class \SimpleExcel\Writer\CSVWriter)
+src/Entity/FileToBeConverted.php:5 PhanUnreferencedUseNormal Possibly zero references to use statement for classlike/namespace ORM (\Doctrine\ORM\Mapping)
+src/Form/ConvertorFormType.php:23 PhanUndeclaredTypeParameter Parameter $resolver has undeclared type \Symfony\Component\OptionsResolver\OptionsResolver
+src/Form/ConvertorFormType.php:25 PhanUndeclaredClassMethod Call to method setDefaults from undeclared class \Symfony\Component\OptionsResolver\OptionsResolver
+src/Kernel.php:12 PhanUndeclaredExtendedClass Class extends undeclared class \Symfony\Component\HttpKernel\Kernel (Did you mean class \App\Kernel)
+src/Kernel.php:33 PhanUndeclaredTypeParameter Parameter $container has undeclared type \Symfony\Component\DependencyInjection\ContainerBuilder
+src/Kernel.php:33 PhanUndeclaredTypeParameter Parameter $loader has undeclared type \Symfony\Component\Config\Loader\LoaderInterface
+src/Kernel.php:35 PhanUndeclaredClassMethod Call to method __construct from undeclared class \Symfony\Component\Config\Resource\FileResource
+src/Kernel.php:35 PhanUndeclaredClassMethod Call to method addResource from undeclared class \Symfony\Component\DependencyInjection\ContainerBuilder
+src/Kernel.php:36 PhanUndeclaredClassMethod Call to method setParameter from undeclared class \Symfony\Component\DependencyInjection\ContainerBuilder
+src/Kernel.php:37 PhanUndeclaredClassMethod Call to method setParameter from undeclared class \Symfony\Component\DependencyInjection\ContainerBuilder
+src/Kernel.php:40 PhanUndeclaredClassMethod Call to method load from undeclared class \Symfony\Component\Config\Loader\LoaderInterface
+src/Kernel.php:41 PhanUndeclaredClassMethod Call to method load from undeclared class \Symfony\Component\Config\Loader\LoaderInterface
+src/Kernel.php:42 PhanUndeclaredClassMethod Call to method load from undeclared class \Symfony\Component\Config\Loader\LoaderInterface
+src/Kernel.php:43 PhanUndeclaredClassMethod Call to method load from undeclared class \Symfony\Component\Config\Loader\LoaderInterface
+src/Kernel.php:46 PhanUndeclaredTypeParameter Parameter $routes has undeclared type \Symfony\Component\Routing\RouteCollectionBuilder
+src/Kernel.php:50 PhanUndeclaredClassMethod Call to method import from undeclared class \Symfony\Component\Routing\RouteCollectionBuilder
+src/Kernel.php:51 PhanUndeclaredClassMethod Call to method import from undeclared class \Symfony\Component\Routing\RouteCollectionBuilder
+src/Kernel.php:52 PhanUndeclaredClassMethod Call to method import from undeclared class \Symfony\Component\Routing\RouteCollectionBuilder
+src/Repository/FileToBeConvertedRepository.php:15 PhanUndeclaredExtendedClass Class extends undeclared class \Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository
+src/Repository/FileToBeConvertedRepository.php:17 PhanUndeclaredTypeParameter Parameter $registry has undeclared type \Doctrine\Common\Persistence\ManagerRegistry
+src/Repository/FileToBeConvertedRepository.php:19 PhanUndeclaredClass Reference to undeclared class \Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository

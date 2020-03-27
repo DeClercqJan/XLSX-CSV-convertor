@@ -4,11 +4,10 @@ namespace App\Controller;
 
 use App\Entity\FileToBeConverted;
 use App\Form\ConvertorFormType;
-use App\Form\ConvertorType;
+use SimpleExcel\SimpleExcel;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use SimpleExcel\SimpleExcel;
 
 class ConvertorController extends AbstractController
 {
@@ -26,7 +25,7 @@ class ConvertorController extends AbstractController
         // to do: nog iets aan front-end weergeven indien succes
         $errors = [];
 
-        if ($form->isSubmitted() && $form->isValid() && $requestMethod === "POST") {
+        if ($form->isSubmitted() && $form->isValid() && 'POST' === $requestMethod) {
             // put a lot of of the work (like storing object on right place) in this object, using methods of Symfony\Component\HttpFoundation\File\UploadedFile;
             // question: does this have to do with FileType in FormType voor mijn form-field
             // https://symfony.com/doc/current/controller/upload_file.html how I've read it: FileType: to render front-end, but you can already call on File in its buildform props
@@ -39,6 +38,7 @@ class ConvertorController extends AbstractController
             // may need to put these checks with return statements in reusable thingie
             if (!in_array($fileExtensionOnlyOriginal, $acceptedFileExtensions)) {
                 $errors[] = "file extension of original $fileExtensionOnlyOriginal is not an accepted file extension";
+
                 return $this->render('convertor/index.html.twig', [
                     'controller_name' => 'ConvertorController',
                     'form' => $form->createView(),
@@ -53,6 +53,7 @@ class ConvertorController extends AbstractController
             // checks if conversion is unnecessary
             if ($fileExtensionOnlyOriginal === $fileExtensionDestination) {
                 $errors[] = 'file extension of original is the same as required destination file extension';
+
                 return $this->render('convertor/index.html.twig', [
                     'controller_name' => 'ConvertorController',
                     'form' => $form->createView(),
@@ -71,7 +72,6 @@ class ConvertorController extends AbstractController
             // stap 2: transform
             $preparedObject->convertTo(strtoupper($fileExtensionDestination));
             $preparedObject->writer->saveFile($fileNameOnly); // save the file with specified name (example.xml)
-
         }
 
         return $this->render('convertor/index.html.twig', [
