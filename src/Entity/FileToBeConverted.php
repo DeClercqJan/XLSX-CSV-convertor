@@ -22,7 +22,7 @@ class FileToBeConverted
     /**
      * @ORM\Column(type="object")
      */
-    private $File;
+    private $file;
 
     private $fileNameFull;
 
@@ -32,22 +32,11 @@ class FileToBeConverted
 
     private const SAVED_FILES_DIRECTORY = "/var/www/XLSX-CSV-convertor/public/uploaded_files/";
 
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getFile()
-    {
-        return $this->File;
-    }
-
     // shouldn't this be in a constructor?
-    public function setFile($File): self
+    public function setFile($file): self
     {
 
-        $this->File = $File;
+        $this->file = $file;
 
         $this->setFileNameFull();
         $this->setFileExtension();
@@ -57,30 +46,14 @@ class FileToBeConverted
         return $this;
     }
 
-    private function setFileNameFull()
+    public function getId(): ?int
     {
-
-        $this->fileNameFull = $this->File->getClientOriginalName();
-
+        return $this->id;
     }
 
-    public function getFileNameFull()
+    public function getFile()
     {
-        return $this->fileNameFull;
-    }
-
-    private function setFileExtension()
-    {
-
-        $this->fileExtension = $this->File->getClientOriginalExtension();
-    }
-
-    private function setFileNameWithoutExtension()
-    {
-        $lengthOfExtension = strlen($this->fileExtension);
-        // don't forget the dot!
-        $lengthOfExtension = $lengthOfExtension + 1;
-        $this->fileNameWithoutExtension = substr($this->fileNameFull,0, -$lengthOfExtension);
+        return $this->file;
     }
 
     public function getFileNameWithoutExtension()
@@ -93,10 +66,9 @@ class FileToBeConverted
         return $this->fileExtension;
     }
 
-    private
-    function saveFileToServer()
+    public function getFileNameFull()
     {
-        $this->File->move(self::SAVED_FILES_DIRECTORY, $this->fileNameFull);
+        return $this->fileNameFull;
     }
 
     public
@@ -110,7 +82,34 @@ class FileToBeConverted
     public
     function checkUploadErrors()
     {
-        return $this->File->getError();
+        return $this->file->getError();
+    }
+
+    private function setFileNameFull()
+    {
+
+        $this->fileNameFull = $this->file->getClientOriginalName();
+
+    }
+
+    private function setFileExtension()
+    {
+
+        $this->fileExtension = $this->file->getClientOriginalExtension();
+    }
+
+    private function setFileNameWithoutExtension()
+    {
+        $lengthOfExtension = strlen($this->fileExtension);
+        // don't forget the dot!
+        $lengthOfExtension = $lengthOfExtension + 1;
+        $this->fileNameWithoutExtension = substr($this->fileNameFull, 0, -$lengthOfExtension);
+    }
+
+    private
+    function saveFileToServer()
+    {
+        $this->file->move(self::SAVED_FILES_DIRECTORY, $this->fileNameFull);
     }
 
 }
