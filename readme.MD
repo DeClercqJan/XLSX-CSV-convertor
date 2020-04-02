@@ -2,6 +2,7 @@
 
 ## basic idea
 - upload to/from CSV-XML
+- Becode PHP challenge
 
 ## implementation
 - didn't choose the right external app to transform to/from XLXS (whoop!) (https://faisalman.github.io/simple-excel-php/api/0.3/). Limits this app's use, but I'm doing this to improve my process anyway
